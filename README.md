@@ -163,7 +163,135 @@ export default defineNuxtPlugin(nuxtApp => {
  </template>
 ```
 
+## Testing
+
+### Install
+
+```
+% npm i -D \
+    @vitejs/plugin-vue \
+    @vue/test-utils \
+    jsdom \
+    unplugin-auto-import \
+    vitest
+```
+
+### Add files
+
+`vitest.config.ts`
+
+```typescript
+import { defineConfig } from 'vite'
+import Vue from '@vitejs/plugin-vue'
+import AutoImport from 'unplugin-auto-import/vite'
+
+export default defineConfig({
+  plugins: [
+    Vue(),
+    AutoImport({
+      imports: ['vue'],
+    }),
+  ],
+  test: {
+    globals: true,
+    environment: 'jsdom',
+  },
+  resolve: {
+    alias: {
+      '@': '.'
+    },
+  },
+})
+```
+
+`tests/pages/index.spec.ts`
+
+```typescript
+import { mount } from '@vue/test-utils'
+
+import Index from '@/pages/index.vue'
+
+describe('Index', async () => {
+  test('1st h1', async () => {
+    const wrapper = mount(Index)
+    expect(wrapper.find('h1').text()).toBe('Example')
+  })
+})
+```
+
+### Update files
+
+`tsconfig.json`
+
+```diff
+--- a/example/tsconfig.json
++++ b/example/tsconfig.json
+@@ -1,4 +1,9 @@
+ {
+   // https://nuxt.com/docs/guide/concepts/typescript
+-  "extends": "./.nuxt/tsconfig.json"
++  "extends": "./.nuxt/tsconfig.json",
++  "compilerOptions": {
++    "types": [
++      "vitest/globals"
++    ]
++  }
+ }
+```
+
+`package.json`
+
+```diff
+--- a/example/package.json
++++ b/example/package.json
+@@ -6,15 +6,21 @@
+     "dev": "nuxt dev",
+     "generate": "nuxt generate",
+     "preview": "nuxt preview",
+-    "postinstall": "nuxt prepare"
++    "postinstall": "nuxt prepare",
++    "test": "vitest run"
+   },
+   "devDependencies": {
+     "@nuxt/devtools": "latest",
+```
+
+`.gitignore`
+
+```diff
+--- a/example/.gitignore
++++ b/example/.gitignore
+@@ -21,3 +21,6 @@ logs
+ .env
+ .env.*
+ !.env.example
++
++#
++auto-imports.d.ts
+```
+
+### Todo
+
+```
+▲ [WARNING] Cannot find base config file "./.nuxt/tsconfig.json" [tsconfig.json]
+
+    ../../../../tsconfig.json:3:13:
+      3 │   "extends": "./.nuxt/tsconfig.json",
+        ╵              ~~~~~~~~~~~~~~~~~~~~~~~
+```
+
+```
+[Vue warn]: Failed to resolve component: v-btn
+If this is a native custom element, make sure to exclude it from component resolution via compilerOptions.isCustomElement.
+  at <Index ref="VTU_COMPONENT" >
+  at <VTUROOT>
+```
+
 ## Links
 
 * https://nuxt.com/
+    * https://nuxt.com/docs/getting-started/installation
+    * https://nuxt.com/docs/guide/concepts/typescript
+    * https://nuxt.com/docs/getting-started/views
+    * https://nuxt.com/docs/getting-started/testing
 * https://vuetifyjs.com/
