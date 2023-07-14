@@ -1,6 +1,7 @@
 <script  lang="ts" setup>
-const state = reactive<{ date: Date }>({ date: new Date() })
+const state = reactive<{ date: Date|null }>({ date: null })
 const update = () => state.date = new Date()
+onMounted(update)
 </script>
 
 <template>
