@@ -10,6 +10,7 @@
     "test": "vitest run"
   },
   "devDependencies": {
+    "@mdi/font": "^7.2.96",
     "@nuxt/devtools": "latest",
     "@types/node": "^20.4.2",
     "@vitejs/plugin-vue": "^4.2.3",

@@ -164,6 +164,40 @@ export default defineNuxtPlugin(nuxtApp => {
  </template>
 ```
 
+## Icon
+
+```
+% npm install -D @mdi/font
+```
+
+```diff
+--- a/example/pages/index.vue
++++ b/example/pages/index.vue
+@@ -11,7 +11,10 @@ onMounted(update)
+       {{ state.date }}
+     </div>
+     <div>
+-      <v-btn class="text-none" @click="update">
++      <v-btn class="text-none" prepend-icon="mdi-check-circle" @click="update">
++        <template v-slot:prepend>
++          <v-icon></v-icon>
++        </template>
+         update
+       </v-btn>
+     </div>
+```
+
+```diff
+--- a/example/plugins/vuetify.ts
++++ b/example/plugins/vuetify.ts
+@@ -1,4 +1,5 @@
+ import { createVuetify } from 'vuetify'
++import '@mdi/font/css/materialdesignicons.css'
+
+ export default defineNuxtPlugin(nuxtApp => {
+   nuxtApp.vueApp.use(createVuetify({ ssr: true }))
+```
+
 ## Testing
 
 ### Install

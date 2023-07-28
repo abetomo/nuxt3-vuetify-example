@@ -11,7 +11,10 @@ onMounted(update)
       {{ state.date }}
     </div>
     <div>
-      <v-btn class="text-none" @click="update">
+      <v-btn class="text-none" prepend-icon="mdi-check-circle" @click="update">
+        <template v-slot:prepend>
+          <v-icon></v-icon>
+        </template>
         update
       </v-btn>
     </div>
