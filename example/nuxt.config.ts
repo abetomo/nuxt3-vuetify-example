@@ -8,17 +8,17 @@ export default defineNuxtConfig({
     typeCheck: true
   },
   build: {
-    transpile: ['vuetify'],
+    transpile: ['vuetify']
   },
   hooks: {
     'vite:extendConfig': (config) => {
       config.plugins!.push(vuetify())
-    },
+    }
   },
   vite: {
     ssr: {
-      noExternal: ['vuetify'],
-    },
+      noExternal: ['vuetify']
+    }
   },
-  css: ['@/assets/vuetify.scss'],
+  css: ['@/assets/vuetify.scss']
 })

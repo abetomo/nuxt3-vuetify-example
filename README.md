@@ -198,6 +198,60 @@ export default defineNuxtPlugin(nuxtApp => {
    nuxtApp.vueApp.use(createVuetify({ ssr: true }))
 ```
 
+## Lint
+
+```
+% npm i -D \
+    eslint \
+    @nuxtjs/eslint-config-typescript
+```
+
+Add `.eslintrc.js`.
+
+```js
+module.exports =  {
+  root: true,
+  env: {
+    browser: true,
+    es2021: true,
+    node: true
+  },
+  extends: [
+    'eslint:recommended',
+    '@nuxtjs/eslint-config-typescript'
+  ],
+  parserOptions: {
+    sourceType: 'module'
+  },
+  plugins: [
+    '@typescript-eslint'
+  ]
+}
+```
+
+Update `package.json`
+
+```diff
+--- a/example/package.json
++++ b/example/package.json
+@@ -5,6 +5,7 @@
+     "build": "nuxt build",
+     "dev": "nuxt dev",
+     "generate": "nuxt generate",
++    "lint": "eslint --ext .vue,.ts,.js --ignore-path .gitignore .",
+     "preview": "nuxt preview",
+     "postinstall": "nuxt prepare",
+     "test": "vitest run"
+```
+
+```
+% npm run lint
+```
+
+```
+% npm run lint -- --fix
+```
+
 ## Testing
 
 ### Install

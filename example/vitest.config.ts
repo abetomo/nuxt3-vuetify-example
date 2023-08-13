@@ -6,16 +6,16 @@ export default defineConfig({
   plugins: [
     Vue(),
     AutoImport({
-      imports: ['vue'],
-    }),
+      imports: ['vue']
+    })
   ],
   test: {
     globals: true,
-    environment: 'jsdom',
+    environment: 'jsdom'
   },
   resolve: {
     alias: {
       '@': '.'
-    },
-  },
+    }
+  }
 })
