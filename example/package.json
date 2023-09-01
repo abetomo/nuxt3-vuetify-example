@@ -14,7 +14,7 @@
     "@mdi/font": "^7.2.96",
     "@nuxt/devtools": "latest",
     "@nuxtjs/eslint-config-typescript": "^12.0.0",
-    "@types/node": "^20.4.2",
+    "@types/node": "^20.5.8",
     "@vitejs/plugin-vue": "^4.2.3",
     "@vue/test-utils": "^2.4.0",
     "eslint": "^8.47.0",
