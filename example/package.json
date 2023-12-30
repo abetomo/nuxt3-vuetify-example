@@ -16,7 +16,7 @@
     "@nuxtjs/eslint-config-typescript": "^12.1.0",
     "@types/node": "^20.10.2",
     "@vitejs/plugin-vue": "^4.2.3",
-    "@vue/test-utils": "^2.4.0",
+    "@vue/test-utils": "^2.4.3",
     "eslint": "^8.55.0",
     "jsdom": "^23.0.1",
     "nuxt": "^3.7.4",
